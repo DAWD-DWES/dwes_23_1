@@ -3,8 +3,8 @@ START TRANSACTION;
 SET time_zone = "+00:00";
 
 DROP DATABASE IF EXISTS hangman_22_2;
-CREATE DATABASE hangman_22_2 DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish_ci;
-USE hangman_22_2;
+CREATE DATABASE hangman_23_1 DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish_ci;
+USE hangman_23_1;
 
 
 DROP TABLE IF EXISTS usuarios;

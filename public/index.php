@@ -23,13 +23,13 @@
  *      Invoco la vista del formulario de login
  */
 require "../vendor/autoload.php";
+require "../src/error_handler.php";
 
 use eftec\bladeone\BladeOne;
 use Dotenv\Dotenv;
-use App\{
-    BD,
-    Usuario
-};
+use App\Modelo\Usuario;
+use App\DAO\UsuarioDAO;
+use App\BD\BD;
 
 session_start();
 
@@ -49,6 +49,9 @@ try {
     echo $blade->run("cnxbderror", compact('error'));
     die;
 }
+// Crea un objeto UsuarioDAO
+$usuarioDAO = new UsuarioDAO($bd);
+
 // Si el usuario ya está validado
 if (isset($_SESSION['usuario'])) {
     // Si se solicita cerrar la sesión
@@ -77,9 +80,9 @@ if (isset($_SESSION['usuario'])) {
         // Si se está enviando el formulario de login con los datos
     } elseif (isset($_REQUEST['botonproclogin'])) {
         // Lee los valores del formulario
-        $nombre = trim(filter_input(INPUT_POST, 'nombre', FILTER_SANITIZE_STRING));
-        $clave = trim(filter_input(INPUT_POST, 'clave', FILTER_SANITIZE_STRING));
-        $usuario = Usuario::recuperaUsuarioPorCredencial($bd, $nombre, $clave);
+        $nombre = trim(filter_input(INPUT_POST, 'nombre'));
+        $pwd = trim(filter_input(INPUT_POST, 'clave'));
+        $usuario = $usuarioDAO->recuperaPorCredencial($nombre, $pwd);
         // Si los credenciales son correctos
         if ($usuario) {
             $_SESSION['usuario'] = $usuario;

@@ -17,14 +17,14 @@
  *      Invoco la vista del formulario de login
  */
 require "../vendor/autoload.php";
+require "../src/error_handler.php";
 
 use eftec\bladeone\BladeOne;
 use Dotenv\Dotenv;
-use App\{
-    BD,
-    Hangman,
-    AlmacenPalabrasFichero
-};
+use App\BD\BD;
+use App\Modelo\Hangman;
+use App\Almacen\AlmacenPalabrasInterface;
+use App\Almacen\AlmacenPalabrasFichero;
 
 session_start();
 
