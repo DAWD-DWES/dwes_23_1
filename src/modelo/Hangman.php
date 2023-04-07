@@ -40,16 +40,6 @@ class Hangman {
     private $maxNumErrores;
 
     /**
-     * Hora de inicio del juego de la palabra
-     */
-    private $inicio;
-
-    /**
-     * Hora de fin del juego de la palabra
-     */
-    private $fin;
-
-    /**
      * Constructor de la clase Hangman
      * 
      * @param AlmacenPalabrasInterface $almacen Almacen de donde obtener palabras para el juego
@@ -64,7 +54,6 @@ class Hangman {
         $this->setLetras("");
         $this->setNumErrores(0);
         $this->setMaxNumErrores($maxNumErrores);
-        $this->setInicio(new DateTime());
     }
 
     public function getId(): ?int {
@@ -188,10 +177,10 @@ class Hangman {
     public function getPuntuacion(): int {
         $puntuacion = 0;
         if ($this->esPalabraDescubierta()) {
-            $puntuacion = $puntuacion + preg_match_all('/[aeiou]+/', $this->getPalabraSecreta());
+            $puntuacion = 1;
+            $puntuacion = $puntuacion + preg_match_all('/[AEIOU]{2,}/', $this->getPalabraSecreta());
             $puntuacion = $puntuacion + (strlen($this->getPalabraSecreta()) >= 3 && strlen($this->getPalabraSecreta()) <= 5);
             $puntuacion = $puntuacion + ($this->getNumErrores() <= 3);
-            //  $puntuacion = $puntuacion + ($date1->diff($date2)->days;)
         }
         return $puntuacion;
     }
