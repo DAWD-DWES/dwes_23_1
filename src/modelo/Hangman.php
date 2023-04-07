@@ -135,7 +135,7 @@ class Hangman {
      */
     public function esPalabraDescubierta(): bool {
         // Si ya no hay guiones en la palabra descubierta
-        return (!(strstr($this->getPalabraDescubierta(), "_")));
+        return strstr($this->getPalabraDescubierta(), "_") === false;
     }
 
     /**
