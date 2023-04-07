@@ -2,6 +2,7 @@
 
 namespace App\Modelo;
 
+use \DateTime;
 
 /**
  * Hangman representa una partida del juego del ahorcado
@@ -39,6 +40,16 @@ class Hangman {
     private $maxNumErrores;
 
     /**
+     * Hora de inicio del juego de la palabra
+     */
+    private $inicio;
+
+    /**
+     * Hora de fin del juego de la palabra
+     */
+    private $fin;
+
+    /**
      * Constructor de la clase Hangman
      * 
      * @param AlmacenPalabrasInterface $almacen Almacen de donde obtener palabras para el juego
@@ -50,10 +61,10 @@ class Hangman {
         $this->setPalabraSecreta(strtoupper($almacen->obtenerPalabraAleatoria()));
         // Inicializa la estado de la palabra descubierta a una secuencia de guiones, uno por letra de la palabra oculta
         $this->setPalabraDescubierta(preg_replace('/\w+?/', '_', $this->getPalabraSecreta()));
-        $this->letras = "";
+        $this->setLetras("");
         $this->setNumErrores(0);
-        $this->letras = "";
-        $this->maxNumErrores = $maxNumErrores;
+        $this->setMaxNumErrores($maxNumErrores);
+        $this->setInicio(new DateTime());
     }
 
     public function getId(): ?int {
@@ -104,6 +115,22 @@ class Hangman {
         $this->numErrores = $numErrores;
     }
 
+    public function getInicio(): DateTime {
+        return $this->inicio;
+    }
+
+    public function setInicio($inicio): void {
+        $this->incio = $inicio;
+    }
+
+    public function getFin(): DateTime {
+        return $this->inicio;
+    }
+
+    public function setFin($inicio): void {
+        $this->incio = $inicio;
+    }
+
     public function getUsuarioId(): ?int {
         return ($this->id) ?? null;
     }
@@ -135,7 +162,7 @@ class Hangman {
      */
     public function esPalabraDescubierta(): bool {
         // Si ya no hay guiones en la palabra descubierta
-        return (!(strstr($this->getPalabraDescubierta(), "_")));
+        return strstr($this->getPalabraDescubierta(), "_") === false;
     }
 
     /**
@@ -145,6 +172,28 @@ class Hangman {
      */
     public function esFin(): bool {
         return ($this->esPalabraDescubierta() || ($this->getNumErrores() === $this->getMaxNumErrores()));
+    }
+
+    /**
+     * Devuelve la puntuación de la palabra.
+     * 
+     * Si la palabra no se acierta la puntuación es 0.
+     * Si la palabra tiene entre 3 y 5 letras se suman 2 ptos en otro caso 1 pto
+     * Se suma un punto por cada combinación de dos vocales seguidas de la palabra
+     * Se suma un punto si se descubre en 3 o menos fallos
+     * Se suma un punto si se avergua en menos de 1 minuto
+     *  
+     * @returns int Puntuación de la palabra
+     */
+    public function getPuntuacion(): int {
+        $puntuacion = 0;
+        if ($this->esPalabraDescubierta()) {
+            $puntuacion = $puntuacion + preg_match_all('/[aeiou]+/', $this->getPalabraSecreta());
+            $puntuacion = $puntuacion + (strlen($this->getPalabraSecreta()) >= 3 && strlen($this->getPalabraSecreta()) <= 5);
+            $puntuacion = $puntuacion + ($this->getNumErrores() <= 3);
+            //  $puntuacion = $puntuacion + ($date1->diff($date2)->days;)
+        }
+        return $puntuacion;
     }
 
 }
