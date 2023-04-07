@@ -50,10 +50,9 @@ class Hangman {
         $this->setPalabraSecreta(strtoupper($almacen->obtenerPalabraAleatoria()));
         // Inicializa la estado de la palabra descubierta a una secuencia de guiones, uno por letra de la palabra oculta
         $this->setPalabraDescubierta(preg_replace('/\w+?/', '_', $this->getPalabraSecreta()));
-        $this->letras = "";
+        $this->setLetras("");
         $this->setNumErrores(0);
-        $this->letras = "";
-        $this->maxNumErrores = $maxNumErrores;
+        $this->setMaxNumErrores($maxNumErrores);
     }
 
     public function getId(): ?int {
