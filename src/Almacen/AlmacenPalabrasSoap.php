@@ -16,11 +16,7 @@ class AlmacenPalabrasSoap implements AlmacenPalabrasInterface {
     }
 
     public function obtenerPalabraAleatoria(): string {
-        try {
-            $palabra = $this->cliente->getPalabraAleatoria();
-        } catch (SoapFault $ex) {
-            print($this->cliente->__getLastResponse() . "<br>");
-        }
+        $palabra = $this->cliente->getPalabraAleatoria();
         return $palabra;
     }
 

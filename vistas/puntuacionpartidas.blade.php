@@ -11,7 +11,7 @@
     </ul>
 </div>
 @endsection
-{{-- Sección muestra puntuacion de las partidas --}}
+{{-- Sección muestra puntuación de las partidas --}}
 @section('content')
 <div class="container">
     <h1 class="my-5 text-center">Puntuación de partidas jugadas</h1>
@@ -27,14 +27,18 @@
                 </thead>
                 <tbody>
                     @if(!empty($panelPuntuacion))
-                    @php $i=1; @endphp
+                    @set($i=1)
                     @foreach($panelPuntuacion as $key => $partida)
                     <tr>
-                        <td scope="row">{{ $i++ }}</td>
+                        <th scope="row">{{ $i++ }}</td>
                         <td>{{ $partida[0] }}</td>
                         <td>{{ $partida[1] }}</td>
                     </tr>
                     @endforeach
+                    <tr class="">
+                        <td colspan="2" class="text-end fs-4 fw-bold">Total:</td>
+                        <td class="fs-4">{{ array_sum(array_column($panelPuntuacion,1)) }}</td>
+                    </tr>
                     @else
                     <tr><td>No hay partidas</td></tr>
                     @endif
