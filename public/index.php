@@ -63,8 +63,10 @@ if (isset($_SESSION['usuario'])) {
         // Invoco la vista del formulario de login
         echo $blade->run("formlogin");
         die;
-    } else { // Si se solicita una nueva partida
-        $usuario = $_SESSION['usuario'];
+    } else if (isset($_SESSION['partida'])) { // Si hay una partida en curso
+        header("Location:juego.php");
+    } // Si se solicita una nueva partida
+    else { // Si se pide una nueva partida
         // Redirijo al cliente al script de gestión del juego
         header("Location:juego.php?botonnuevapartida");
         die;

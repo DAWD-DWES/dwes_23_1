@@ -56,7 +56,7 @@ if (isset($_SESSION['usuario'])) {
 // Si se pide jugar con una letra
     if (isset($_POST['botonenviarjugada'])) {
 // Leo la letra
-        $letra = filter_var(trim(filter_input(INPUT_POST, 'letra', FILTER_SANITIZE_STRING)), FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => "/^[A-Za-z]$/"]]);
+        $letra = filter_var(trim(filter_input(INPUT_POST, 'letra')), FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => "/^[A-Za-z]$/"]]);
         $usuario = $_SESSION['usuario'];
         $partida = $_SESSION['partida'];
 // Si la letra no es válida (carácter no válido o ya introducida)
