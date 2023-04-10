@@ -65,6 +65,9 @@ if (isset($_SESSION['usuario'])) {
         if (!$error) {
             $partida->compruebaLetra(strtoupper($letra));
         }
+        if ($partida->esFin()) {
+            $_SESSION['partidas'][] = $partida;
+        }
 // Sigo jugando
         echo $blade->run("juego", compact('usuario', 'partida', 'error'));
         die;
@@ -74,17 +77,16 @@ if (isset($_SESSION['usuario'])) {
         $almacenPalabras = new AlmacenPalabrasSoap();
         $partida = new Hangman($almacenPalabras, MAX_NUM_ERRORES);
         $_SESSION['partida'] = $partida;
-        $_SESSION['partidas'][] = $partida;
 // Invoco la vista del juego para empezar a jugar
         echo $blade->run("juego", compact('usuario', 'partida'));
         die;
     } elseif (isset($_REQUEST['botonpuntuacionpartidas'])) {// Se arranca una nueva partida
         $partidas = $_SESSION['partidas'] ?? [];
-        $panelPuntuacion=[];
+        $panelPuntuacion = [];
         foreach ($partidas as $partida) {
-            $panelPuntuacion[]=[$partida->getPalabraSecreta(), $partida->getPuntuacion()];
+            $panelPuntuacion[] = [$partida->getPalabraSecreta(), $partida->getNumErrores(), $partida->getPuntuacion()];
         }
-        usort($panelPuntuacion, fn($a, $b) => $a[1]<=>$b[1]);
+        usort($panelPuntuacion, fn($a, $b) => $a[1] <=> $b[1]);
         echo $blade->run("puntuacionpartidas", compact('panelPuntuacion'));
         die;
     } else { // En cualquier otro caso

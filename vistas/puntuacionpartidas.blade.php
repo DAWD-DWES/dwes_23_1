@@ -22,6 +22,7 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Palabra</th>
+                        <th scope="col">#Errores</th>
                         <th scope="col">Puntos</th>
                     </tr>
                 </thead>
@@ -33,11 +34,12 @@
                         <th scope="row">{{ $i++ }}</td>
                         <td>{{ $partida[0] }}</td>
                         <td>{{ $partida[1] }}</td>
+                        <td>{{ $partida[2] }}</td>
                     </tr>
                     @endforeach
                     <tr class="">
-                        <td colspan="2" class="text-end fs-4 fw-bold">Total:</td>
-                        <td class="fs-4">{{ array_sum(array_column($panelPuntuacion,1)) }}</td>
+                        <td colspan="3" class="text-end fs-5 fw-bold">Total:</td>
+                        <td class="fs-5">{{ array_sum(array_column($panelPuntuacion,2)) }}</td>
                     </tr>
                     @else
                     <tr><td>No hay partidas</td></tr>
