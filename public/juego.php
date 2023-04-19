@@ -21,7 +21,6 @@ require "../src/error_handler.php";
 
 use eftec\bladeone\BladeOne;
 use Dotenv\Dotenv;
-use App\BD\BD;
 use App\Modelo\Hangman;
 use App\Almacen\AlmacenPalabrasInterface;
 use App\Almacen\AlmacenPalabrasSoap;
