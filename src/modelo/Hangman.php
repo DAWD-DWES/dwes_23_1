@@ -2,6 +2,8 @@
 
 namespace App\Modelo;
 
+use App\Almacen\AlmacenPalabrasInterface;
+
 
 /**
  * Hangman representa una partida del juego del ahorcado
@@ -11,32 +13,32 @@ class Hangman {
     /**
      * Id de la partida de ahorcado
      */
-    private $id;
+    private int $id;
 
     /**
      * Número de errores cometidos en la partida
      */
-    private $numErrores;
+    private int $numErrores;
 
     /**
      * Palabra secreta usada en la partida
      */
-    private $palabraSecreta;
+    private string $palabraSecreta;
 
     /**
      * Estado de la palabra según va siendo descubierta. Por ejemplo c_c_e
      */
-    private $palabraDescubierta;
+    private string $palabraDescubierta;
 
     /**
      * Lista de jugadas que ha realizado el jugador en la partida
      */
-    private $letras;
+    private string $letras;
 
     /**
      * Número de errores permitido en la partida
      */
-    private $maxNumErrores;
+    private int $maxNumErrores;
 
     /**
      * Constructor de la clase Hangman
@@ -46,7 +48,7 @@ class Hangman {
      * 
      * @returns Hangman
      */
-    public function __construct($almacen, $maxNumErrores) {
+    public function __construct(AlmacenPalabrasInterface $almacen, int $maxNumErrores) {
         $this->setPalabraSecreta(strtoupper($almacen->obtenerPalabraAleatoria()));
         // Inicializa la estado de la palabra descubierta a una secuencia de guiones, uno por letra de la palabra oculta
         $this->setPalabraDescubierta(preg_replace('/\w+?/', '_', $this->getPalabraSecreta()));
@@ -67,7 +69,7 @@ class Hangman {
         return $this->palabraSecreta;
     }
 
-    public function setPalabraSecreta($palabra): void {
+    public function setPalabraSecreta(string $palabra): void {
         $this->palabraSecreta = $palabra;
     }
 
@@ -75,7 +77,7 @@ class Hangman {
         return $this->palabraDescubierta;
     }
 
-    public function setPalabraDescubierta($palabra): void {
+    public function setPalabraDescubierta(string $palabra): void {
         $this->palabraDescubierta = $palabra;
     }
 
@@ -83,7 +85,7 @@ class Hangman {
         return $this->letras;
     }
 
-    public function setLetras($letras): void {
+    public function setLetras(string $letras): void {
         $this->letras = $letras;
     }
 
@@ -91,7 +93,7 @@ class Hangman {
         return $this->maxNumErrores;
     }
 
-    public function setMaxNumErrores($maxNumErrores): void {
+    public function setMaxNumErrores(int $maxNumErrores): void {
         $this->maxNumErrores = $maxNumErrores;
     }
 
@@ -99,7 +101,7 @@ class Hangman {
         return $this->numErrores;
     }
 
-    public function setNumErrores($numErrores): void {
+    public function setNumErrores(int $numErrores): void {
         $this->numErrores = $numErrores;
     }
 
@@ -114,7 +116,7 @@ class Hangman {
      * 
      * @returns string El estado de la palabra descubierta
      */
-    public function compruebaLetra($letra): string {
+    public function compruebaLetra(string $letra): string {
         $nuevaPalabraDescubierta = implode(array_map(function ($letraSecreta, $letraDescubierta) use ($letra) {
                     return ((strtoupper($letra) === $letraSecreta) ? $letraSecreta : $letraDescubierta);
                 }, str_split($this->getPalabraSecreta()), str_split($this->getPalabraDescubierta())));

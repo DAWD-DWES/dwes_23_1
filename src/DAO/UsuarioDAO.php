@@ -13,19 +13,28 @@ class UsuarioDAO {
         $this->bd = $bd;
     }
 
-    function crea($usuario) {
+    function crea(Usuario $usuario) {
         
     }
 
-    function modifica($usuario) {
+    function modifica(Usuario $usuario) {
         
     }
 
-    function elimina($nombre) {
+    function elimina(string $nombre) {
         
     }
+    
+     /**
+     * Recupera un objeto usuario dado su nombre de usuario y clave
+     * 
+     * @param string $nombre Nombre de usuario
+     * @param string $pwd Clave del usuario
+     * 
+     * @returns Usuario que corresponde a ese nombre y clave o null en caso contrario
+     */
 
-    function recuperaPorCredencial($nombre, $pwd) {
+    function recuperaPorCredencial(string $nombre, string $pwd): Usuario {
         $this->bd->setAttribute(PDO::ATTR_CASE, PDO::CASE_NATURAL);
         $sql = 'select * from usuarios where nombre=:nombre and clave=:pwd';
         $sth = $this->bd->prepare($sql);
