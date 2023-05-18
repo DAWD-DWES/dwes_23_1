@@ -3,7 +3,24 @@
 {{-- Sección aporta el título de la página --}}
 @section('title', 'Introduce Jugada')
 {{-- Sección muestra vista de juego para que el usuario elija una letra --}}
+@section ('navbar')
+<li class="nav-item">
+    <a class="nav-link" aria-current="page" href="juego.php?botonnuevapartida">Nueva Partida</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" aria-current="page" href="juego.php?botonpuntuacionpartidas">Puntuación Partidas</a>
+</li>
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        {{ $usuario->getNombre() }}
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+        <li><a class="dropdown-item" href="index.php?botonlogout">Logout</a></li>
+    </ul>
+</li>
+@endsection
 @section('content')
+@set($imgsHangman=['Hangman-0.png','Hangman-1.png','Hangman-2.png','Hangman-3.png','Hangman-4.png','Hangman-5.png'])
 <div class="container">
     <div class="position-relative p-5">
         <div class="position-absolute top-50 start-50 translate-middle">
@@ -26,14 +43,11 @@
                 </div>
             </form>
             <h3 class="my-4">Las letras introducidas hasta el momento son:</h3>
-            @if (empty ($partida->getLetras()))
-            <h2>-</h2>
-            @else
-            <h2>{{ implode(" ", str_split($partida->getLetras())) }}</h2>
-            @endif
+            <h3>{{ implode(" ", str_split($partida->getLetras())) }}</h3>
+            <h3 id="pista"></h3>
         </div>
         <div class="col-sm-4">
-            <img src="assets/img/Hangman-{{ $partida->getNumErrores() }}.png" class="img-fluid">
+            <img src="./assets/img/{{ $imgsHangman[$partida->getNumErrores()] }}" class="img-fluid">
         </div>
     </div>
 </div>
