@@ -3,13 +3,9 @@
 {{-- Sección aporta el título de la página --}}
 @section('title', 'Puntuación Partidas')
 @section('navbar')
-<div class="container justify-content-around">
-    <ul class="navbar-nav">
-        <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="juego.php">Volver</a>
-        </li>
-    </ul>
-</div>
+<li class="nav-item">
+    <a class="nav-link" aria-current="page" href="juego.php">Volver</a>
+</li>
 @endsection
 {{-- Sección muestra puntuación de las partidas --}}
 @section('content')

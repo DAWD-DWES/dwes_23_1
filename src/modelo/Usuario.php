@@ -3,27 +3,22 @@
 namespace App\Modelo;
 
 /**
- * Usuario representa al usuario que está usando la aplicación
+ * Clase que representa al usuario que está usando la aplicación
  */
 class Usuario {
 
     /**
-     * Identificador del usuario
-     */
-    private int $id;
-
-    /**
-     * nombre del usuario
+     * @var string $nombre nombre del usuario
      */
     private string $nombre;
 
     /**
-     * Clave del usuario
+     * @var string $clave Clave del usuario
      */
     private string $clave;
 
     /**
-     * Email del usuario
+     * @var string $email Email del usuario
      */
     private string $email;
 
@@ -34,9 +29,9 @@ class Usuario {
      * @param string $clave Clave del usuario
      * @param string $email Email del usuario
      * 
-     * @returns Usuario
+     * @returns Hangman
      */
-    public function __construct(string $nombre = null, string $clave = null, string $email = null) {
+    public function __construct(?string $nombre = null, ?string $clave = null, ?string $email = null) {
         if (!is_null($nombre)) {
             $this->nombre = $nombre;
         }
@@ -48,31 +43,72 @@ class Usuario {
         }
     }
 
+    /**
+     * Recupera el Id del usuario
+     * 
+     * @returns int Id del usuario
+     */
     public function getId(): ?int {
         return $this->id;
     }
 
+    /**
+     * Recupera el nombre del usuario
+     * 
+     * @returns string Nombre del usuario
+     */
     public function getNombre(): string {
         return $this->nombre;
     }
 
+    /**
+     * Establece el nombre del usuario
+     * 
+     * @param string $nombre Nombre del usuario
+     * 
+     * @returns void
+     */
     public function setNombre(string $nombre) {
         $this->nombre = $nombre;
     }
 
+    /**
+     * Recupera la clave del usuario
+     * 
+     * @returns string Clave del usuario
+     */
     public function getClave(): string {
         return $this->clave;
     }
 
+    /**
+     * Establece la clave del usuario
+     * 
+     * @param string $clave Clave del usuario
+     * 
+     * @returns void
+     */
     public function setClave(string $clave) {
         $this->clave = $clave;
     }
 
-    public function getEmail(): string {
+    /**
+     * Recupera el email del usuario
+     * 
+     * @returns string Email del usuario
+     */
+    public function getEmail(): ?string {
         return $this->email;
     }
 
-    public function setEmail(string $email): void {
+    /**
+     * Establece el email del usuario
+     * 
+     * @param string $email Email del usuario
+     * 
+     * @returns void
+     */
+    public function setEmail(string $email) {
         $this->email = $email;
     }
 
