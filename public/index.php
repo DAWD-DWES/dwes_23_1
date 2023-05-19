@@ -23,7 +23,7 @@ use eftec\bladeone\BladeOne;
 use Dotenv\Dotenv;
 use App\BD\BD;
 use App\Modelo\Usuario;
-use App\DAO\UsuarioDao;
+use App\DAO\UsuarioDAO;
 
 session_start();
 
@@ -51,7 +51,7 @@ try {
     die;
 }
 
-$usuarioDao = new UsuarioDao($bd);
+$usuarioDAO = new UsuarioDAO($bd);
 // Si el usuario ya está validado
 if (isset($_SESSION['usuario'])) {
     // Si se solicita cerrar la sesión
@@ -75,7 +75,7 @@ if (isset($_SESSION['usuario'])) {
         // Lee los valores del formulario
         $nombre = trim(filter_input(INPUT_POST, 'nombre', FILTER_UNSAFE_RAW));
         $clave = trim(filter_input(INPUT_POST, 'clave', FILTER_UNSAFE_RAW));
-        $usuario = $usuarioDao->recuperaPorCredencial($nombre, $clave);
+        $usuario = $usuarioDAO->recuperaPorCredencial($nombre, $clave);
         // Si los credenciales son correctos
         if ($usuario) {
             $_SESSION['usuario'] = $usuario;
