@@ -37,11 +37,11 @@ $blade = new BladeOne($views, $cache, BladeOne::MODE_DEBUG);
 
 // Si el usuario ya está validado
 if (isset($_SESSION['usuario'])) {
+    $usuario = $_SESSION['usuario'];
 // Si se pide jugar con una letra
     if (isset($_POST['botonenviarjugada'])) {
 // Leo la letra
         $letra = trim(filter_input(INPUT_POST, 'letra', FILTER_UNSAFE_RAW));
-        $usuario = $_SESSION['usuario'];
         $partida = $_SESSION['partida'];
 // Compruebo si la letra no es válida (carácter no válido o ya introducida)
         $error = !$partida->esLetraValida($letra);
@@ -58,7 +58,6 @@ if (isset($_SESSION['usuario'])) {
         die;
 // Sino si se solicita una nueva partida
     } elseif (isset($_REQUEST['botonnuevapartida'])) { // Se arranca una nueva partida
-        $usuario = $_SESSION['usuario'];
         $wsdl = $_ENV['WSDL_ALMACEN_PALABRAS'];
         $almacenPalabras = new AlmacenPalabrasSoap($wsdl);
         $partida = new Hangman($almacenPalabras, MAX_NUM_ERRORES);
@@ -72,10 +71,9 @@ if (isset($_SESSION['usuario'])) {
         foreach ($partidas as $partida) {
             $panelPuntuacion[] = [$partida->getPalabraSecreta(), $partida->getNumErrores(), $partida->getPuntuacion()];
         }
-        echo $blade->run("puntuacionpartidas", compact('panelPuntuacion'));
+        echo $blade->run("puntuacionpartidas", compact('panelPuntuacion', 'usuario'));
         die;
     } else { //En cualquier otro caso
-        $usuario = $_SESSION['usuario'];
         $partida = $_SESSION['partida'];
         echo $blade->run("juego", compact('usuario', 'partida'));
         die;
