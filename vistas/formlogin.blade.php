@@ -2,6 +2,8 @@
 @extends('app')
 {{-- Sección aporta el título de la página --}}
 @section('title', 'Formulario login')
+@section('usermenu')
+@endsection
 {{-- Sección muestra el formulario de login del usuario --}}
 @section('content')
 <div class="container my-5">
