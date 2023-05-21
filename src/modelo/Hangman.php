@@ -215,7 +215,9 @@ class Hangman {
     public function getPuntuacion(): int {
         $puntuacion = 0;
         if ($this->esPalabraDescubierta()) {
-            $puntuacion = 1 + preg_match_all('/[AEIOU]{2,}/', $this->getPalabraSecreta()) + (strlen($this->getPalabraSecreta()) >= 3 && strlen($this->getPalabraSecreta()) <= 5) + ($this->getNumErrores() <= 3);
+            $puntuacion = 1 + preg_match_all('/[AEIOU]{2,}/', $this->getPalabraSecreta()) + 
+                    (strlen($this->getPalabraSecreta()) >= 3 && strlen($this->getPalabraSecreta()) <= 5) + 
+                    ($this->getNumErrores() <= 3);
         }
         return $puntuacion;
     }

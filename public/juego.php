@@ -72,7 +72,6 @@ if (isset($_SESSION['usuario'])) {
         foreach ($partidas as $partida) {
             $panelPuntuacion[] = [$partida->getPalabraSecreta(), $partida->getNumErrores(), $partida->getPuntuacion()];
         }
-        usort($panelPuntuacion, fn($a, $b) => $a[1] <=> $b[1]);
         echo $blade->run("puntuacionpartidas", compact('panelPuntuacion'));
         die;
     } else { //En cualquier otro caso
