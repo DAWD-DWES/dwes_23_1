@@ -10,7 +10,7 @@
 {{-- Sección muestra puntuación de las partidas --}}
 @section('content')
 <div class="container">
-    <h1 class="my-5 text-center">Puntuación de partidas jugadas</h1>
+    <h2 class="text-center my-4">Puntuación de partidas jugadas</h2>
     <div class="row">
         <div class="col-12">
             <table class="table">
@@ -24,10 +24,9 @@
                 </thead>
                 <tbody>
                     @if(!empty($panelPuntuacion))
-                    @set($i=1)
                     @foreach($panelPuntuacion as $key => $partida)
                     <tr>
-                        <th scope="row">{{ $i++ }}</td>
+                        <th scope="row">{{ $loop->iteration }}</td>
                         <td>{{ $partida[0] }}</td>
                         <td>{{ $partida[1] }}</td>
                         <td>{{ $partida[2] }}</td>
