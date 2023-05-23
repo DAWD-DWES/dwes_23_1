@@ -8,7 +8,7 @@ namespace App\Modelo;
 class Usuario {
     
     /**
-     * @var string $id nombre del usuario
+     * @var string $id identificador del usuario
      */
     private string $id;
 
