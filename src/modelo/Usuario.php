@@ -6,6 +6,11 @@ namespace App\Modelo;
  * Clase que representa al usuario que está usando la aplicación
  */
 class Usuario {
+    
+    /**
+     * @var string $id nombre del usuario
+     */
+    private string $id;
 
     /**
      * @var string $nombre nombre del usuario
