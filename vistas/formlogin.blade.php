@@ -6,14 +6,14 @@
 @endsection
 {{-- Sección muestra el formulario de login del usuario --}}
 @section('content')
-<div class="container col-md-8">
-    <div class="panel panel-default">
+<div class="container col-md-4">
+    <div>
         @if (isset($error)) 
         <div class="alert alert-danger" role="alert">Error Credenciales</div>
         @endif
         <h2 class="text-center">Login</h2>
-        <div class="panel-body mt-3">
-            <form class="form-horizontal" method="POST" action="index.php" id='formlogin'>
+        <div>
+            <form method="POST" action="index.php" id='formlogin'>
                 <div class="mb-3 row">                            
                     <label for="inputNombre" class="col-sm-2 col-form-label">Nombre</label>
                     <div class="col-sm-10">
