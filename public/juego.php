@@ -9,10 +9,16 @@
  *     Leo la letra
  *     Si no hay error en la letra introducida
  *       Solicito a la partida que compruebe la letra
+ *       Si la partida ha terminado
+ *          Introduzco la partida en la lista de partidas acabadas de la sesión
  *     Invoco la vista de juego con los datos obtenidos
  *   Sino si se solicita una nueva partida
  *     Se crea una nueva partida
  *     Invoco la vista del juego para empezar a jugar
+ *   Sino si se solicita el listado de puntuación
+ *     Leo la lista de partidas de la sesión
+ *     Para cada partida le pido que calcule su puntuación
+ *     Invoco la vista puntuacionespartidas con el array de puntuaciones
  *   Sino Invoco la vista de juego
  *  Sino (En cualquier otro caso)
  *      Invoco la vista del formulario de login

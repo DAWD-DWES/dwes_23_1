@@ -24,12 +24,12 @@
                 </thead>
                 <tbody>
                     @if(!empty($panelPuntuacion))
-                    @foreach($panelPuntuacion as $key => $partida)
+                    @foreach($panelPuntuacion as $puntuacion)
                     <tr>
                         <th scope="row">{{ $loop->iteration }}</td>
-                        <td>{{ $partida[0] }}</td>
-                        <td>{{ $partida[1] }}</td>
-                        <td>{{ $partida[2] }}</td>
+                        <td>{{ $puntuacion[0] }}</td>
+                        <td>{{ $puntuacion[1] }}</td>
+                        <td>{{ $puntuacion[2] }}</td>
                     </tr>
                     @endforeach
                     <tr class="">
