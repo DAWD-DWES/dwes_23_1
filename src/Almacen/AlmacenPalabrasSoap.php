@@ -25,7 +25,7 @@ class AlmacenPalabrasSoap implements AlmacenPalabrasInterface {
      * @returns AlmacenPalabrasSoap
      */
     public function __construct(string $wsdl) {
-        $this->cliente = new SoapClient(self::URL, ['trace' => true]);
+        $this->cliente = new SoapClient(self::URL);
     }
 
     /**
