@@ -6,7 +6,7 @@
 @endsection
 {{-- Sección muestra el formulario de login del usuario --}}
 @section('content')
-<div class="container col-md-4">
+<div class="container col-md-6">
     <div>
         @if (isset($error)) 
         <div class="alert alert-danger" role="alert">Error Credenciales</div>
