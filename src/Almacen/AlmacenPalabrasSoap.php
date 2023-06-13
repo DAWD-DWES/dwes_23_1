@@ -3,7 +3,6 @@
 namespace App\Almacen;
 
 use \SoapClient;
-use \SoapFault;
 
 class AlmacenPalabrasSoap implements AlmacenPalabrasInterface {
 
@@ -12,8 +11,6 @@ class AlmacenPalabrasSoap implements AlmacenPalabrasInterface {
      * @var SoapClient $clienteSoap Cliente Soap para acceder al servicio de palabras Soap
      */
     private SoapClient $clienteSoap;
-
-    const URL = 'http://localhost/serviciopalabras/servicio.wsdl';
 
     /**
      * Constructor de la clase AlmacenPalabrasFichero
@@ -25,7 +22,7 @@ class AlmacenPalabrasSoap implements AlmacenPalabrasInterface {
      * @returns AlmacenPalabrasSoap
      */
     public function __construct(string $wsdl) {
-        $this->cliente = new SoapClient(self::URL);
+        $this->cliente = new SoapClient($wsdl);
     }
 
     /**
