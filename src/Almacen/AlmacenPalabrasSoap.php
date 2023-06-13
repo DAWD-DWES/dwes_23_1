@@ -10,7 +10,7 @@ class AlmacenPalabrasSoap implements AlmacenPalabrasInterface {
      * 
      * @var SoapClient $clienteSoap Cliente Soap para acceder al servicio de palabras Soap
      */
-    private SoapClient $clienteSoap;
+    private SoapClient $cliente;
 
     /**
      * Constructor de la clase AlmacenPalabrasFichero

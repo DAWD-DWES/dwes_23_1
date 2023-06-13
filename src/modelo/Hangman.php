@@ -204,11 +204,11 @@ class Hangman {
     /**
      * Devuelve la puntuación de la palabra.
      * 
-     * Si la palabra no se acierta la puntuación es 0.
-     * Si la palabra tiene entre 3 y 5 letras se suman 2 ptos en otro caso 1 pto
-     * Se suma un punto por cada combinación de dos vocales seguidas de la palabra
-     * Se suma un punto si se descubre en 3 o menos fallos
-     * Se suma un punto si se avergua en menos de 1 minuto
+     * Si la palabra ha sido acertada la puntuación es 0.
+     * Si la palabra ha sido acertada la puntuación es 1.
+     * Se suma un punto si la palabra tiene entre 3 y 5 letras.
+     * Se suma un punto por cada combinación de dos vocales seguidas de la palabra.
+     * Se suma un punto si se descubre en 3 o menos fallos.
      *  
      * @returns int Puntuación de la palabra
      */
