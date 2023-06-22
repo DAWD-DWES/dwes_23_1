@@ -25,7 +25,7 @@ class Usuario {
     /**
      * @var string $email Email del usuario
      */
-    private string $email;
+    private ?string $email;
 
     /**
      * Constructor de la clase Usuario
